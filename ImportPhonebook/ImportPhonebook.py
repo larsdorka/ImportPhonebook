@@ -11,10 +11,18 @@ if __name__ == '__main__':
     parser.print_help()
     args = parser.parse_args()
 
-    internal_filename = args.i
-    external_filename = args.e
+    internal_filename = ""
+    if args.i is not None:
+        internal_filename = args.i
+    external_filename = ""
+    if args.e is not None:
+        external_filename = args.e
+    output_filename = "phonebook.xml"
+    if args.o is not None:
+        output_filename = args.o
 
     if internal_filename != "":
+        print()
         print('Internal numbers:')
         with open(internal_filename, newline='') as i_file:
             i_reader = csv.DictReader(i_file, delimiter=';')
